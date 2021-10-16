@@ -34,7 +34,7 @@ public class Knight {
         this.icon = new ImageIcon(getClass().getResource(imageFile));
     }
     
-//  Check valid move
+//  Kiểm tra nước đi có hợp lệ hay không
     public boolean isValid(int nextRow, int nextCol) {
         int xDiff = Math.abs(nextRow - currentRow);
         int yDiff = Math.abs(nextCol - currentCol);
@@ -42,20 +42,20 @@ public class Knight {
         return (xDiff == 1 && yDiff == 2) || (xDiff == 2 && yDiff == 1);
     }
     
-//  An array of reachabel tiles from current row and column
+//  Mảng các nước đi có thể đi được từ hàng và cột hiện tại
     public int[][] nextDestination() {
         int[][] nextTiles = new int[MAX_MOVE_NUM][2];
         
         for (int moveNumber = 0; moveNumber < MAX_MOVE_NUM; moveNumber++) {
-            nextTiles[moveNumber][0] = currentRow + xMove[moveNumber];
-            nextTiles[moveNumber][1] = currentCol + yMove[moveNumber];
+            nextTiles[moveNumber][0] = currentRow + xMove[moveNumber]; //hàng
+            nextTiles[moveNumber][1] = currentCol + yMove[moveNumber]; //cột
         }
         
         return nextTiles;
     }
     
-//  An array of reachabel tiles from row and column
-    public int[][] nexDestination(int row, int col) {
+//  Mảng các nước đi có thể đi được từ hàng và cột được chỉ định
+    public int[][] nextDestination(int row, int col) {
         int[][] nextTiles = new int[MAX_MOVE_NUM][2];
         
         for (int moveNumber = 0; moveNumber < MAX_MOVE_NUM; moveNumber++) {
@@ -66,7 +66,7 @@ public class Knight {
         return nextTiles;
     }
     
-//  Move the knight to the next tile based on a move number
+//  Di chuyển quân mã đến ô tiếp theo dựa trên thứ tự các bước đi
     public  boolean move(int moveNumber) {
         if(moveNumber < MAX_MOVE_NUM) {
             currentRow += xMove[moveNumber];
@@ -76,7 +76,7 @@ public class Knight {
         return false;
     }
     
-//  Move the knight to a specified tile
+//  Di chuyển quân mã đến ô được chỉ định
     public boolean move(int nextRow, int nextCol) {
         if (isValid(nextRow, nextCol)) {
             currentRow = nextRow;

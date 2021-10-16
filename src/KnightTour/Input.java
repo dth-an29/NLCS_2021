@@ -29,6 +29,7 @@ public class Input extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,6 +39,9 @@ public class Input extends javax.swing.JFrame {
         txtRow = new javax.swing.JTextField();
         btnStart = new javax.swing.JButton();
         txtSize = new javax.swing.JTextField();
+        radYes = new javax.swing.JRadioButton();
+        radNo = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Input");
@@ -74,6 +78,18 @@ public class Input extends javax.swing.JFrame {
         txtSize.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtSize.setText("8");
 
+        buttonGroup1.add(radYes);
+        radYes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        radYes.setSelected(true);
+        radYes.setText("Có");
+
+        buttonGroup1.add(radNo);
+        radNo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        radNo.setText("Không");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Heuristic?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,21 +98,30 @@ public class Input extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(55, 55, 55)
-                        .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtRow, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(33, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSize))
+                        .addGap(47, 47, 47))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(55, 55, 55))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(110, 110, 110)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radYes)
+                            .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRow, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(radNo))
+                        .addContainerGap(18, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -128,7 +153,12 @@ public class Input extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radYes)
+                    .addComponent(radNo)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(btnStart)
                 .addGap(26, 26, 26))
         );
@@ -144,9 +174,9 @@ public class Input extends javax.swing.JFrame {
         if (cbTime.getSelectedItem().equals("Nhanh"))
             return 100;
         else if (cbTime.getSelectedItem().equals("Vừa"))
-            return 300;
+            return 400;
         else
-            return 500;
+            return 800;
     }
     
     public int getRow() {
@@ -157,13 +187,16 @@ public class Input extends javax.swing.JFrame {
         return Integer.parseInt(txtCol.getText());
     }
     
+    public boolean getOption() {
+        return radYes.isSelected();
+    }
+    
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
-        if (getSizeBoard() < 0 || getRow() < 0 || getCol() < 0 || (getRow() > getSizeBoard()) || (getCol() > getSizeBoard())) {
-            JOptionPane.showMessageDialog(null, "Input is invalid!", "Error", JOptionPane.ERROR_MESSAGE);
+        if (getSizeBoard() <= 0 || getRow() <= 0 || getCol() <= 0 || (getRow() > getSizeBoard()) || (getCol() > getSizeBoard())) {
+            JOptionPane.showMessageDialog(null, "Đầu vào không hợp lệ!", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-    
-            Heuristic h = new Heuristic(getSizeBoard(), getTime(), getRow() - 1, getCol() - 1);
+            Heuristic h = new Heuristic(getSizeBoard(), getTime(), getRow() - 1, getCol() - 1, getOption());
             h.setVisible(true);
         }
     }//GEN-LAST:event_btnStartActionPerformed
@@ -205,11 +238,15 @@ public class Input extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbTime;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JRadioButton radNo;
+    private javax.swing.JRadioButton radYes;
     private javax.swing.JTextField txtCol;
     private javax.swing.JTextField txtRow;
     private javax.swing.JTextField txtSize;

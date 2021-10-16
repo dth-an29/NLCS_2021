@@ -8,7 +8,6 @@ package KnightTour;
 import java.awt.Container;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -40,13 +39,13 @@ public class Heuristic extends JFrame {
 //                chessBoard.resetBoard();
 //            }
 //        }
-        chessBoard.runTour(7, 5, true, 300);
+        chessBoard.runTour(0, 0, false, 300);
     }
     
-    public Heuristic(int size, int time, int initRow, int initCol) {
+    public Heuristic(int size, int time, int initRow, int initCol, boolean option) {
         super("Knight's Tour");
         Container contents = getContentPane();
-        Board chessBoard = new Board(size, time);
+        Board chessBoard = new Board(size);
 
         contents.setLayout(new GridLayout(size, size));
                 
@@ -68,10 +67,9 @@ public class Heuristic extends JFrame {
 //                chessBoard.resetBoard();
 //            }
 //        }
-        SwingUtilities.invokeLater(()->{
-            chessBoard.runTour(initRow, initCol, false, time);
-
-        });
+//        SwingUtilities.invokeLater(()->{
+            chessBoard.runTour(initRow, initCol, option, time);
+//        });
     }
     
     public static void main(String[] args) {
