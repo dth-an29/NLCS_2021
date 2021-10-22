@@ -20,7 +20,7 @@ public class Knight {
     private int currentRow;
     private int currentCol;
     
-    public Knight(String imageFile, int initialRow, int initialCol) {
+    public Knight(ImageIcon imageFile, int initialRow, int initialCol) {
         setIcon(imageFile);
         this.currentRow = initialRow;
         this.currentCol = initialCol;
@@ -30,8 +30,8 @@ public class Knight {
         return icon;
     }
     
-    public void setIcon(String imageFile) {
-        this.icon = new ImageIcon(getClass().getResource(imageFile));
+    public void setIcon(ImageIcon imageFile) {
+        this.icon = imageFile;
     }
     
 //  Kiểm tra nước đi có hợp lệ hay không

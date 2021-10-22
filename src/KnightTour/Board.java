@@ -6,8 +6,10 @@
 package KnightTour;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -24,6 +26,7 @@ public class Board {
     private int visitedTileCounter;
     private Knight knight;
     private int preCol = -1, preRow = -1;
+    InputK inputK;
 
     public Board() {
         TileHandler tileHandler = new TileHandler();
@@ -34,7 +37,7 @@ public class Board {
                 if ((row + col) % 2 == 0) {
                     tiles[row][col].setBackground(Color.WHITE);
                 } else {
-                    tiles[row][col].setBackground(Color.BLACK);
+                    tiles[row][col].setBackground(Color.PINK);
                 }
                 tiles[row][col].setOpaque(true);
                 tiles[row][col].setBorder(new LineBorder(Color.BLACK));
@@ -63,7 +66,7 @@ public class Board {
                 if ((row + col) % 2 == 0) {
                     tiles[row][col].setBackground(Color.WHITE);
                 } else {
-                    tiles[row][col].setBackground(Color.BLACK);
+                    tiles[row][col].setBackground(Color.PINK);
                 }
                 tiles[row][col].setOpaque(true);
                 tiles[row][col].setBorder(new LineBorder(Color.BLACK));
@@ -86,7 +89,7 @@ public class Board {
                 if ((row + col) % 2 == 0) {
                     tiles[row][col].setBackground(Color.WHITE);
                 } else {
-                    tiles[row][col].setBackground(Color.BLACK);
+                    tiles[row][col].setBackground(Color.PINK);
                 }
             }
         }
@@ -96,10 +99,10 @@ public class Board {
         visitedTileCounter = 0;
 
         //        Khởi tạo trạng thái các ô chưa được ghé thăm
-        for (int moveNumber = 0; moveNumber < Knight.MAX_MOVE_NUM; moveNumber++) {
-            nextTiles[moveNumber][0] = -1;
-            nextTiles[moveNumber][1] = -1;
-        }
+//        for (int moveNumber = 0; moveNumber < Knight.MAX_MOVE_NUM; moveNumber++) {
+//            nextTiles[moveNumber][0] = -1;
+//            nextTiles[moveNumber][1] = -1;
+//        }
     }
 
 //    Lấy vị trí ô được chỉ định
@@ -153,7 +156,11 @@ public class Board {
         }
 
         if (validMoveCounter == 0) {
-            JOptionPane.showMessageDialog(null, "Không tồn tại nước đi tiếp theo!", "Tour Ended", JOptionPane.PLAIN_MESSAGE);
+            int out = JOptionPane.showConfirmDialog(null, "Không tồn tại nước đi tiếp theo!\nBạn có muốn thử lại không?", "Tour Ended", JOptionPane.YES_NO_OPTION);
+            if (out == JOptionPane.YES_OPTION) {
+                inputK = new InputK();
+                inputK.setVisible(true);
+            }
         }
     }
 
@@ -166,7 +173,7 @@ public class Board {
                 if ((nextRow + nextCol) % 2 == 0) {
                     tiles[nextRow][nextCol].setBackground(Color.WHITE);
                 } else {
-                    tiles[nextRow][nextCol].setBackground(Color.BLACK);
+                    tiles[nextRow][nextCol].setBackground(Color.PINK);
                 }
             }
         }
@@ -244,7 +251,11 @@ public class Board {
         int optimalMoveNumber = getOptimalMoveNumber(nextTiles, optimizedTiedSquares);
 
         if (optimalMoveNumber <= -1) {
-            JOptionPane.showMessageDialog(null, "Không tồn tại nước đi tiếp theo!", "Tour Ended", JOptionPane.PLAIN_MESSAGE);
+            int out = JOptionPane.showConfirmDialog(null, "Không tồn tại nước đi tiếp theo!\nBạn có muốn thử lại không?", "Tour Ended", JOptionPane.YES_NO_OPTION);
+            if (out == JOptionPane.YES_OPTION) {
+                inputK = new InputK();
+                inputK.setVisible(true);
+            }
         } else {
             tiles[knight.getCurrentRow()][knight.getCurrentCol()].setIcon(null);
             if (knight.move(optimalMoveNumber)) {
@@ -255,10 +266,25 @@ public class Board {
 
         return false;
     }
+    
+    private Image scaleImage(Image image, int w, int h) {
+        return image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+    }
 
 //    Chuyến đi của quân mã dựa trên heuristic và thời gian nghỉ
     public void runTour(int intialRow, int intialCol, boolean optimized, int time) {
-        knight = new Knight("/KnightTour/knight.png", intialRow, intialCol);
+        ImageIcon img = new ImageIcon(getClass().getResource("/icon/knight1.png"));
+        int size = 1000 / BOARD_SIZE;
+        Image scaled = scaleImage(img.getImage(), size, size);
+        ImageIcon scaledIcon = new ImageIcon(scaled);
+        knight = new Knight(scaledIcon, intialRow, intialCol);
+        try {
+            Thread.sleep(1000);
+            resetBoard();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         markAsVisited(intialRow, intialCol);
 
         new Thread(() -> {
@@ -270,7 +296,11 @@ public class Board {
                 }
             }
             if (visitedTileCounter >= BOARD_SIZE * BOARD_SIZE) {
-                JOptionPane.showMessageDialog(null, "Tất cả các ô đã được viếng thăm!", "Full Tour", JOptionPane.PLAIN_MESSAGE);
+                int out = JOptionPane.showConfirmDialog(null, "Tất cả các ô đã được ghé thăm!\nBạn có muốn thử tiếp không?", "Full Tour", JOptionPane.YES_NO_OPTION);
+                if (out == JOptionPane.YES_OPTION) {
+                    inputK = new InputK();
+                    inputK.setVisible(true);
+                }
             }
         }).start();
     }
@@ -282,13 +312,17 @@ public class Board {
         public void actionPerformed(ActionEvent e) {
             Object source = e.getSource();
             clearMoveSuggestion();
+            ImageIcon img = new ImageIcon(getClass().getResource("/icon/knight1.png"));
+        int size = 1000 / BOARD_SIZE;
+        Image scaled = scaleImage(img.getImage(), size, size);
+        ImageIcon scaledIcon = new ImageIcon(scaled);
 
             for (int row = 0; row < BOARD_SIZE; row++) {
                 for (int col = 0; col < BOARD_SIZE; col++) {
 //                  Di chuyển quân mã đến ô được click và nó vẫn chưa được ghé thăm
                     if (source == tiles[row][col] && isNotVisited(row, col)) {
                         if (visitedTileCounter == 0) {
-                            knight = new Knight("knight.png", row, col);
+                            knight = new Knight(scaledIcon, row, col);
                             markAsVisited(row, col);
                         } else {
                             tiles[knight.getCurrentRow()][knight.getCurrentCol()].setIcon(null);
@@ -303,7 +337,11 @@ public class Board {
             }
 
             if (visitedTileCounter >= BOARD_SIZE * BOARD_SIZE) {
-                JOptionPane.showMessageDialog(null, "All tiles have been visited", "Full Tour", JOptionPane.PLAIN_MESSAGE);
+                int out = JOptionPane.showConfirmDialog(null, "Tất cả các ô đã được ghé thăm!\nBạn có muốn thử tiếp không?", "Full Tour", JOptionPane.YES_NO_OPTION);
+                if (out == JOptionPane.YES_OPTION) {
+                    inputK = new InputK();
+                    inputK.setVisible(true);
+                }
             } else {
                 displayMoveSuggestion();
             }

@@ -5,7 +5,9 @@
  */
 package nienluancs;
 
-import KnightTour.Input;
+import KnightTour.InputK;
+import NQueens.InputQ;
+import java.awt.Color;
 
 
 
@@ -20,6 +22,7 @@ public class NienLuanCS extends javax.swing.JFrame {
      */
     public NienLuanCS() {
         initComponents();
+        this.getContentPane().setBackground(Color.PINK);
     }
 
     /**
@@ -59,11 +62,16 @@ public class NienLuanCS extends javax.swing.JFrame {
         jLabel5.setText("Đỗ Thị Hồng An - B1805737");
 
         queenBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        queenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NQueens/Queen.gif"))); // NOI18N
+        queenBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Queen.gif"))); // NOI18N
         queenBtn.setText("NQueens");
+        queenBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queenBtnActionPerformed(evt);
+            }
+        });
 
         knightBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        knightBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/KnightTour/knight.png"))); // NOI18N
+        knightBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/knight.png"))); // NOI18N
         knightBtn.setText("Knight's Tour");
         knightBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,12 +133,21 @@ public class NienLuanCS extends javax.swing.JFrame {
 
     private void knightBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knightBtnActionPerformed
         // TODO add your handling code here:
-        Input in = new Input();
+        InputK in = new InputK();
         in.setVisible(true);
         in.setResizable(false);
         in.setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }//GEN-LAST:event_knightBtnActionPerformed
+
+    private void queenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queenBtnActionPerformed
+        // TODO add your handling code here:
+        InputQ inp = new InputQ();
+        inp.setVisible(true);
+        inp.setResizable(false);
+        inp.setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }//GEN-LAST:event_queenBtnActionPerformed
 
     /**
      * @param args the command line arguments
