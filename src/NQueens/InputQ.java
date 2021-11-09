@@ -20,29 +20,31 @@ public class InputQ extends javax.swing.JFrame {
     public InputQ() {
         initComponents();
         this.getContentPane().setBackground(Color.PINK);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
+
     public int getSizeB() {
         return Integer.parseInt(txtSize.getText());
     }
-    
+
     public int getTime() {
-        if (cbTime.getSelectedItem().toString().equals("Nhanh"))
-            return 10;
-        else if (cbTime.getSelectedItem().toString().equals("Vừa"))
+        if (cbTime.getSelectedItem().toString().equals("Chậm")) {
             return 500;
-        else
-            return 900;
+        } else if (cbTime.getSelectedItem().toString().equals("Vừa")) {
+            return 300;
+        } else {
+            return 30;
+        }
     }
-    
+
     public int getRow() {
         return Integer.parseInt(txtRow.getText());
     }
-    
+
     public int getCol() {
         return Integer.parseInt(txtCol.getText());
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +65,7 @@ public class InputQ extends javax.swing.JFrame {
         btnStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Input");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("N-Queens");

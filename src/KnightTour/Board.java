@@ -98,11 +98,11 @@ public class Board {
 
         visitedTileCounter = 0;
 
-        //        Khởi tạo trạng thái các ô chưa được ghé thăm
-//        for (int moveNumber = 0; moveNumber < Knight.MAX_MOVE_NUM; moveNumber++) {
-//            nextTiles[moveNumber][0] = -1;
-//            nextTiles[moveNumber][1] = -1;
-//        }
+//        Khởi tạo trạng thái các ô chưa được ghé thăm
+        for (int moveNumber = 0; moveNumber < Knight.MAX_MOVE_NUM; moveNumber++) {
+            nextTiles[moveNumber][0] = -1;
+            nextTiles[moveNumber][1] = -1;
+        }
     }
 
 //    Lấy vị trí ô được chỉ định
@@ -156,11 +156,12 @@ public class Board {
         }
 
         if (validMoveCounter == 0) {
-            int out = JOptionPane.showConfirmDialog(null, "Không tồn tại nước đi tiếp theo!\nBạn có muốn thử lại không?", "Tour Ended", JOptionPane.YES_NO_OPTION);
-            if (out == JOptionPane.YES_OPTION) {
-                inputK = new InputK();
-                inputK.setVisible(true);
-            }
+            JOptionPane.showMessageDialog(null, "Không tồn tại nước đi tiếp theo!\nThử lại ở bàn cờ mới bạn nhé!", "Tour Ended", JOptionPane.PLAIN_MESSAGE);
+//            int out = JOptionPane.showConfirmDialog(null, "Không tồn tại nước đi tiếp theo!\nBạn có muốn thử lại không?", "Tour Ended", JOptionPane.YES_NO_OPTION);
+//            if (out == JOptionPane.YES_OPTION) {
+//                inputK = new InputK();
+//                inputK.setVisible(true);
+//            }
         }
     }
 
@@ -169,7 +170,7 @@ public class Board {
         for (int moveNumber = 0; moveNumber < Knight.MAX_MOVE_NUM; moveNumber++) {
             int nextRow = nextTiles[moveNumber][0];
             int nextCol = nextTiles[moveNumber][1];
-            if (isWithinBound(nextRow, nextCol) && (tiles[nextRow][nextCol].getBackground() == Color.YELLOW)) {
+            if (isWithinBound(nextRow, nextCol) && (tiles[nextRow][nextCol].getBackground() == Color.GREEN)) {
                 if ((nextRow + nextCol) % 2 == 0) {
                     tiles[nextRow][nextCol].setBackground(Color.WHITE);
                 } else {
@@ -251,11 +252,12 @@ public class Board {
         int optimalMoveNumber = getOptimalMoveNumber(nextTiles, optimizedTiedSquares);
 
         if (optimalMoveNumber <= -1) {
-            int out = JOptionPane.showConfirmDialog(null, "Không tồn tại nước đi tiếp theo!\nBạn có muốn thử lại không?", "Tour Ended", JOptionPane.YES_NO_OPTION);
-            if (out == JOptionPane.YES_OPTION) {
-                inputK = new InputK();
-                inputK.setVisible(true);
-            }
+            JOptionPane.showMessageDialog(null, "Không tồn tại nước đi tiếp theo!\nVui lòng thử tại vị trí khác bạn nhé!", "Tour Ended", JOptionPane.PLAIN_MESSAGE);
+//            int out = JOptionPane.showConfirmDialog(null, "Không tồn tại nước đi tiếp theo!\nBạn có muốn thử lại không?", "Tour Ended", JOptionPane.YES_NO_OPTION);
+//            if (out == JOptionPane.YES_OPTION) {
+//                inputK = new InputK();
+//                inputK.setVisible(true);
+//            }
         } else {
             tiles[knight.getCurrentRow()][knight.getCurrentCol()].setIcon(null);
             if (knight.move(optimalMoveNumber)) {
@@ -296,11 +298,12 @@ public class Board {
                 }
             }
             if (visitedTileCounter >= BOARD_SIZE * BOARD_SIZE) {
-                int out = JOptionPane.showConfirmDialog(null, "Tất cả các ô đã được ghé thăm!\nBạn có muốn thử tiếp không?", "Full Tour", JOptionPane.YES_NO_OPTION);
-                if (out == JOptionPane.YES_OPTION) {
-                    inputK = new InputK();
-                    inputK.setVisible(true);
-                }
+                JOptionPane.showMessageDialog(null, "Tất cả các ô đã được ghé thăm!\nHãy tiếp tục thử tại vị trí khác bạn nhé!", "Full Tour", JOptionPane.PLAIN_MESSAGE);
+//                int out = JOptionPane.showConfirmDialog(null, "Tất cả các ô đã được ghé thăm!\nBạn có muốn thử tiếp không?", "Full Tour", JOptionPane.YES_NO_OPTION);
+//                if (out == JOptionPane.YES_OPTION) {
+//                    inputK = new InputK();
+//                    inputK.setVisible(true);
+//                }
             }
         }).start();
     }
@@ -337,11 +340,12 @@ public class Board {
             }
 
             if (visitedTileCounter >= BOARD_SIZE * BOARD_SIZE) {
-                int out = JOptionPane.showConfirmDialog(null, "Tất cả các ô đã được ghé thăm!\nBạn có muốn thử tiếp không?", "Full Tour", JOptionPane.YES_NO_OPTION);
-                if (out == JOptionPane.YES_OPTION) {
-                    inputK = new InputK();
-                    inputK.setVisible(true);
-                }
+                JOptionPane.showMessageDialog(null, "Tất cả các ô đã được ghé thăm!\nHãy tiếp tục thử tại vị trí khác bạn nhé!", "Full Tour", JOptionPane.INFORMATION_MESSAGE);
+//                int out = JOptionPane.showConfirmDialog(null, "Tất cả các ô đã được ghé thăm!\nBạn có muốn thử tiếp không?", "Full Tour", JOptionPane.YES_NO_OPTION);
+//                if (out == JOptionPane.YES_OPTION) {
+//                    inputK = new InputK();
+//                    inputK.setVisible(true);
+//                }
             } else {
                 displayMoveSuggestion();
             }

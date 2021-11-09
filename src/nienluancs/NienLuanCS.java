@@ -85,11 +85,11 @@ public class NienLuanCS extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(98, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(queenBtn)
                         .addGap(49, 49, 49)
-                        .addComponent(knightBtn))
+                        .addComponent(knightBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1))
                 .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
@@ -137,7 +137,6 @@ public class NienLuanCS extends javax.swing.JFrame {
         in.setVisible(true);
         in.setResizable(false);
         in.setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }//GEN-LAST:event_knightBtnActionPerformed
 
     private void queenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_queenBtnActionPerformed
@@ -146,7 +145,6 @@ public class NienLuanCS extends javax.swing.JFrame {
         inp.setVisible(true);
         inp.setResizable(false);
         inp.setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }//GEN-LAST:event_queenBtnActionPerformed
 
     /**

@@ -20,6 +20,7 @@ public class InputK extends javax.swing.JFrame {
     public InputK() {
         initComponents();
         this.getContentPane().setBackground(Color.PINK);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -44,6 +45,7 @@ public class InputK extends javax.swing.JFrame {
         radYes = new javax.swing.JRadioButton();
         radNo = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
+        btnGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Input");
@@ -102,6 +104,14 @@ public class InputK extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Heuristic?");
 
+        btnGame.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGame.setText("Game");
+        btnGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,28 +130,28 @@ public class InputK extends javax.swing.JFrame {
                         .addGap(47, 47, 47))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(55, 55, 55))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(110, 110, 110)))
+                                .addGap(110, 110, 110))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnStart)
+                                    .addComponent(jLabel4))
+                                .addGap(55, 55, 55)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radYes)
-                            .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRow, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radNo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(radYes)
+                                    .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRow, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(radNo)))
+                            .addComponent(btnGame))
                         .addContainerGap(21, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(btnStart)))
+                .addGap(53, 53, 53)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,14 +172,16 @@ public class InputK extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtCol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(radYes)
                     .addComponent(radNo))
                 .addGap(30, 30, 30)
-                .addComponent(btnStart)
-                .addGap(34, 34, 34))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStart)
+                    .addComponent(btnGame))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -178,28 +190,29 @@ public class InputK extends javax.swing.JFrame {
     public int getSizeBoard() {
         return Integer.parseInt(txtSize.getText());
     }
-    
+
     public int getTime() {
-        if (cbTime.getSelectedItem().equals("Nhanh"))
+        if (cbTime.getSelectedItem().equals("Nhanh")) {
             return 100;
-        else if (cbTime.getSelectedItem().equals("Vừa"))
+        } else if (cbTime.getSelectedItem().equals("Vừa")) {
             return 400;
-        else
+        } else {
             return 800;
+        }
     }
-    
+
     public int getRow() {
         return Integer.parseInt(txtRow.getText());
     }
-    
+
     public int getCol() {
         return Integer.parseInt(txtCol.getText());
     }
-    
+
     public boolean getOption() {
         return radYes.isSelected();
     }
-    
+
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
         if (getSizeBoard() <= 0 || getRow() <= 0 || getCol() <= 0 || (getRow() > getSizeBoard()) || (getCol() > getSizeBoard())) {
@@ -217,6 +230,12 @@ public class InputK extends javax.swing.JFrame {
     private void txtRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRowActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRowActionPerformed
+
+    private void btnGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameActionPerformed
+        // TODO add your handling code here:
+        KnightGame game = new KnightGame();
+        game.setVisible(true);
+    }//GEN-LAST:event_btnGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +274,7 @@ public class InputK extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGame;
     private javax.swing.JButton btnStart;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbTime;

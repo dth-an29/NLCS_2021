@@ -21,7 +21,7 @@ public class Board {
     int BOARD_SIZE = 8;
     private JButton[][] tiles = new JButton[BOARD_SIZE][BOARD_SIZE];
     private int[] queens = new int[BOARD_SIZE];
-    private int iRow = 1, iCol = 1, time;
+    private int iRow = 1, iCol = 1, time = 50;
     InputQ inputQ;
 
     public Board() {
@@ -64,7 +64,7 @@ public class Board {
             }
         }
     }
-    
+
     public void resetBoard() {
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
@@ -111,11 +111,12 @@ public class Board {
 
     public boolean search(int q) {
         if (q >= BOARD_SIZE) {
-            int out = JOptionPane.showConfirmDialog(null, "Tất cả các quân hậu đã được đặt thành công!\nBạn có muốn thử tiếp không?", "Susscess", JOptionPane.YES_NO_OPTION);
-            if (out == JOptionPane.YES_OPTION) {
-                inputQ = new InputQ();
-                inputQ.setVisible(true);
-            }
+            JOptionPane.showMessageDialog(null, "Tất cả các quân hậu đã được đặt thành công", "Completed", JOptionPane.PLAIN_MESSAGE);
+//            int out = JOptionPane.showConfirmDialog(null, "Tất cả các quân hậu đã được đặt thành công!\nBạn có muốn thử tiếp không?", "Susscess", JOptionPane.YES_NO_OPTION);
+//            if (out == JOptionPane.YES_OPTION) {
+//                inputQ = new InputQ();
+//                inputQ.setVisible(true);
+//            }
             return true;
         }
         if (queens[q] != -BOARD_SIZE) {
@@ -194,11 +195,12 @@ public class Board {
                 e.printStackTrace();
             }
             if (!search(0)) {
-                int output = JOptionPane.showConfirmDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nBạn có muốn thử vị trí khác không?", "Information", JOptionPane.YES_NO_OPTION);
-                if (output == JOptionPane.YES_OPTION) {
-                    inputQ = new InputQ();
-                    inputQ.setVisible(true);
-                }
+                JOptionPane.showMessageDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nVui lòng thử đặt tại vị trí khác bạn nhé!", "Uncompleted", JOptionPane.PLAIN_MESSAGE);
+//                int output = JOptionPane.showConfirmDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nBạn có muốn thử vị trí khác không?", "Information", JOptionPane.YES_NO_OPTION);
+//                if (output == JOptionPane.YES_OPTION) {
+//                    inputQ = new InputQ();
+//                    inputQ.setVisible(true);
+//                }
             } else {
                 printChess();
             }
