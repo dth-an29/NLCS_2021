@@ -6,8 +6,16 @@
 package nienluancs;
 
 import KnightTour.InputK;
+import NQueens.HDSD;
 import NQueens.InputQ;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 
 
@@ -23,6 +31,36 @@ public class NienLuanCS extends javax.swing.JFrame {
     public NienLuanCS() {
         initComponents();
         this.getContentPane().setBackground(Color.PINK);
+        //Thêm menu bar
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        //Thêm menu option
+        JMenu Info = new JMenu("Thông tin");
+        menuBar.add(Info);
+        Info.setFont(new Font("sans-serif", Font.BOLD, 14));
+        //Thêm lựa chọn 
+        JMenuItem author = new JMenuItem("Liên hệ");
+        author.setFont(new Font("sans-serif", Font.BOLD, 14));
+        Info.add(author);
+        author.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Đỗ Thị Hồng An. MSSV: B1805737. \nLớp: DI1896A1. Ngành: Kỹ thuật phần mềm.\nTrường Đại học Cần Thơ.", "Liên hệ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }));
+        
+        JMenuItem hd = new JMenuItem("Hướng dẫn sử dụng");
+        hd.setFont(new Font("sans-serif", Font.BOLD, 14));
+        Info.add(hd);
+        hd.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HDSD n = new HDSD();
+                n.setVisible(true);
+                n.setResizable(false);
+                n.setLocationRelativeTo(null);
+            }
+        }));
     }
 
     /**
@@ -41,13 +79,15 @@ public class NienLuanCS extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         queenBtn = new javax.swing.JButton();
         knightBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Niên Luận Cơ Sở");
-        setLocation(new java.awt.Point(400, 200));
+        setLocation(new java.awt.Point(450, 100));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Niên Luận Cơ Sở");
+        jLabel1.setText("NIÊN LUẬN CƠ SỞ NGÀNH");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Giáo viên hướng dẫn:");
@@ -79,49 +119,67 @@ public class NienLuanCS extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/lg.png"))); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel7.setText("BÀI TOÁN 8 QUÂN HẬU & MÃ ĐI TUẦN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(queenBtn)
-                        .addGap(49, 49, 49)
-                        .addComponent(knightBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1))
-                .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addComponent(jLabel2))
+                        .addGap(370, 370, 370)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel3))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
+                        .addGap(411, 411, 411)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(405, 405, 405)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(163, 163, 163)
-                        .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(queenBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(knightBtn)
+                                .addGap(11, 11, 11))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGap(46, 46, 46)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(queenBtn)
                     .addComponent(knightBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,6 +246,8 @@ public class NienLuanCS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton knightBtn;
     private javax.swing.JButton queenBtn;
     // End of variables declaration//GEN-END:variables

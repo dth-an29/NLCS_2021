@@ -6,8 +6,14 @@
 package NQueens;
 
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 
 /**
@@ -45,6 +51,25 @@ public class NQueens extends JFrame {
         Board chessBoard = new Board(size, time, iRow, iCol);
         
         ctn.setLayout(new GridLayout(size, size));
+        
+        //Thêm menu bar
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        //Thêm menu option
+        JMenu board = new JMenu("Board");
+        board.setFont(new Font("sans-serif", Font.BOLD, 14));
+        menuBar.add(board);
+        //Thêm lựa chọn new game
+        JMenuItem restart = new JMenuItem("New Board");
+        restart.setFont(new Font("sans-serif", Font.BOLD, 14));
+        board.add(restart);
+        restart.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+//                new InputK();
+            }
+        }));
         
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {

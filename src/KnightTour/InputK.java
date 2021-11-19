@@ -49,6 +49,7 @@ public class InputK extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Input");
+        setLocation(new java.awt.Point(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Knight's Tour");

@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 public class Board {
 
     int BOARD_SIZE = 8;
-    private int[][] nextTiles = new int[BOARD_SIZE][2];
+    private int[][] nextTiles = new int[8][2];
     private JButton[][] tiles = new JButton[BOARD_SIZE][BOARD_SIZE];
     private int visitedTileCounter;
     private Knight knight;
@@ -54,7 +54,7 @@ public class Board {
 
     public Board(int size) {
         this.BOARD_SIZE = size;
-        this.nextTiles = new int[size][2];
+//        this.nextTiles = new int[size][2];
         this.tiles = new JButton[size][size];
         this.visitedTileCounter = 0;
 

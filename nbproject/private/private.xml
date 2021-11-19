@@ -4,9 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/NLCS/NienLuanCS/src/KnightTour/KnightGame.java</file>
+            <file>file:/D:/NLCS/NienLuanCS/src/KnightTour/Knight.java</file>
+            <file>file:/D:/NLCS/NienLuanCS/src/NQueens/NQueens.java</file>
             <file>file:/D:/NLCS/NienLuanCS/src/KnightTour/Board.java</file>
+            <file>file:/D:/NLCS/NienLuanCS/src/NQueens/HDSD.java</file>
             <file>file:/D:/NLCS/NienLuanCS/src/KnightTour/InputK.java</file>
             <file>file:/D:/NLCS/NienLuanCS/src/KnightTour/Heuristic.java</file>
+            <file>file:/D:/NLCS/NienLuanCS/src/nienluancs/NienLuanCS.java</file>
         </group>
     </open-files>
 </project-private>

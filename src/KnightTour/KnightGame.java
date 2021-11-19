@@ -6,6 +6,7 @@
 package KnightTour;
 
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,7 +52,7 @@ public class KnightGame extends JFrame {
         setSize(1000, 1000);
         setResizable(false);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
     
@@ -64,9 +65,11 @@ public class KnightGame extends JFrame {
         setJMenuBar(menuBar);
         //Thêm menu option
         JMenu game = new JMenu("Game");
+        game.setFont(new Font("sans-serif", Font.BOLD, 14));
         menuBar.add(game);
         //Thêm lựa chọn new game
         JMenuItem restart = new JMenuItem("New Game");
+        restart.setFont(new Font("sans-serif", Font.BOLD, 14));
         game.add(restart);
         restart.addActionListener((new ActionListener() {
             @Override
@@ -87,7 +90,7 @@ public class KnightGame extends JFrame {
         setSize(1000, 1000);
         setResizable(false);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
     }
     
