@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,7 +22,7 @@ import javax.swing.SwingUtilities;
  * @author An
  */
 public class Heuristic extends JFrame {
-
+    boolean status;
     public Heuristic() {
         super("Knight's Tour");
         Container contents = getContentPane();
@@ -71,6 +72,7 @@ public class Heuristic extends JFrame {
         restart.addActionListener((new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                chessBoard.stopTour();
                 dispose();
 //                new InputK();
             }
@@ -96,6 +98,13 @@ public class Heuristic extends JFrame {
 //        }
         SwingUtilities.invokeLater(() -> {
             chessBoard.runTour(initRow, initCol, option, time);
+        });
+        
+        this.addWindowListener( new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                chessBoard.stopTour();
+            }
         });
     }
 

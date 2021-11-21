@@ -27,6 +27,7 @@ public class Board {
     private Knight knight;
     private int preCol = -1, preRow = -1;
     InputK inputK;
+    boolean status;
 
     public Board() {
         TileHandler tileHandler = new TileHandler();
@@ -272,9 +273,16 @@ public class Board {
     private Image scaleImage(Image image, int w, int h) {
         return image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
     }
+    
+//    start
+    public void stopTour() {
+        status = false;
+    }
+    
 
 //    Chuyến đi của quân mã dựa trên heuristic và thời gian nghỉ
     public void runTour(int intialRow, int intialCol, boolean optimized, int time) {
+        status = true;
         ImageIcon img = new ImageIcon(getClass().getResource("/icon/knight1.png"));
         int size = 1000 / BOARD_SIZE;
         Image scaled = scaleImage(img.getImage(), size, size);
@@ -291,6 +299,9 @@ public class Board {
 
         new Thread(() -> {
             while (visitedTileCounter < (BOARD_SIZE * BOARD_SIZE) && moveKnight(optimized)) {
+                //tạo biến cờ
+                if (!status)
+                    break;
                 try {
                     Thread.sleep(time);
                 } catch (InterruptedException e) {

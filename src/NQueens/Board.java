@@ -23,6 +23,7 @@ public class Board {
     private int[] queens = new int[BOARD_SIZE];
     private int iRow = 1, iCol = 1, time = 50;
     InputQ inputQ;
+    boolean status;
 
     public Board() {
         for (int row = 0; row < BOARD_SIZE; row++) {
@@ -108,6 +109,10 @@ public class Board {
         }
         return true;
     }
+    
+    public void stopQueens() {
+        status = false;
+    }
 
     public boolean search(int q) {
         if (q >= BOARD_SIZE) {
@@ -125,6 +130,8 @@ public class Board {
         } else {
             for (int col = 0; col < BOARD_SIZE; col++) {
 //                System.out.print(BOARD_SIZE);
+                if(!status)
+                    return false;
                 tiles[q][col].setBackground(Color.CYAN);
                 try {
                     Thread.sleep(time);
@@ -170,8 +177,10 @@ public class Board {
     private Image scaleImage(Image image, int w, int h) {
         return image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
     }
+    
 
     public void solveNQueens() {
+        status = true;
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
@@ -195,6 +204,8 @@ public class Board {
                 e.printStackTrace();
             }
             if (!search(0)) {
+                if(!status)
+                    return;
                 JOptionPane.showMessageDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nVui lòng thử đặt tại vị trí khác bạn nhé!", "Uncompleted", JOptionPane.PLAIN_MESSAGE);
 //                int output = JOptionPane.showConfirmDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nBạn có muốn thử vị trí khác không?", "Information", JOptionPane.YES_NO_OPTION);
 //                if (output == JOptionPane.YES_OPTION) {
