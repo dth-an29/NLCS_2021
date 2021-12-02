@@ -36,7 +36,7 @@ public class NQueens extends JFrame {
             }
         }
         
-        setSize(1000, 1000);
+        setSize(900, 900);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -80,7 +80,7 @@ public class NQueens extends JFrame {
             }
         }
         
-        setSize(1000, 1000);
+        setSize(900, 900);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

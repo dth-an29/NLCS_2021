@@ -116,7 +116,7 @@ public class Board {
 
     public boolean search(int q) {
         if (q >= BOARD_SIZE) {
-            JOptionPane.showMessageDialog(null, "Tất cả các quân hậu đã được đặt thành công", "Completed", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Tất cả các quân hậu đã được đặt thành công", "Successful", JOptionPane.PLAIN_MESSAGE);
 //            int out = JOptionPane.showConfirmDialog(null, "Tất cả các quân hậu đã được đặt thành công!\nBạn có muốn thử tiếp không?", "Susscess", JOptionPane.YES_NO_OPTION);
 //            if (out == JOptionPane.YES_OPTION) {
 //                inputQ = new InputQ();
@@ -168,7 +168,7 @@ public class Board {
     public void setQueen(int row, int col) {
         queens[row] = (col);
         ImageIcon img = new ImageIcon(getClass().getResource("/icon/pic_queen.png"));
-        int size = 1000 / BOARD_SIZE;
+        int size = 900 / BOARD_SIZE;
         Image scaled = scaleImage(img.getImage(), size, size);
         ImageIcon scaledIcon = new ImageIcon(scaled);
         tiles[row][col].setIcon(scaledIcon);
@@ -206,7 +206,7 @@ public class Board {
             if (!search(0)) {
                 if(!status)
                     return;
-                JOptionPane.showMessageDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nVui lòng thử đặt tại vị trí khác bạn nhé!", "Uncompleted", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nVui lòng thử đặt tại vị trí khác bạn nhé!", "Unsuccessful", JOptionPane.PLAIN_MESSAGE);
 //                int output = JOptionPane.showConfirmDialog(null, "Không tìm thấy vị trí thích hợp để đặt các quân hậu!\nBạn có muốn thử vị trí khác không?", "Information", JOptionPane.YES_NO_OPTION);
 //                if (output == JOptionPane.YES_OPTION) {
 //                    inputQ = new InputQ();

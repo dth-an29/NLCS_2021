@@ -29,9 +29,11 @@ public class KnightGame extends JFrame {
         setJMenuBar(menuBar);
         //Thêm menu option
         JMenu game = new JMenu("Game");
+        game.setFont(new Font("sans-serif", Font.BOLD, 14));
         menuBar.add(game);
         //Thêm lựa chọn new game
         JMenuItem restart = new JMenuItem("New Game");
+        restart.setFont(new Font("sans-serif", Font.BOLD, 14));
         game.add(restart);
         restart.addActionListener((new ActionListener() {
             @Override
@@ -49,7 +51,7 @@ public class KnightGame extends JFrame {
             }
         }
         
-        setSize(1000, 1000);
+        setSize(900, 900);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -87,7 +89,7 @@ public class KnightGame extends JFrame {
             }
         }
         
-        setSize(1000, 1000);
+        setSize(900, 900);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

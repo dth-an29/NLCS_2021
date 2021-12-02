@@ -215,8 +215,8 @@ public class Board {
     }
 
 //    Lấy nước đi tối ưu nhất trong các nước đi đã tìm được
-//    Nếu chế độ tối ưu được bật tức là biến optimizedTiedSquares true thì sẽ nhìn trước các ô tiếp theo 
-//    xem nó có dẫn đến lời giải hay không
+//    Nếu chế độ tối ưu được bật tức là biến optimizedTiedSquares true thì sẽ 
+//    duyệt qua các ô tiếp theo lấy ô tối ưu nhất hay có khả năng tiếp cận là thấp nhất
     private int getOptimalMoveNumber(int[][] nextTiles, boolean optimizedTiedSquares) {
         int minScore = Knight.MAX_MOVE_NUM;
         int optimalMoveNumber = -1;
@@ -269,27 +269,26 @@ public class Board {
 
         return false;
     }
-    
+
     private Image scaleImage(Image image, int w, int h) {
         return image.getScaledInstance(w, h, Image.SCALE_SMOOTH);
     }
-    
+
 //    start
     public void stopTour() {
         status = false;
     }
-    
 
 //    Chuyến đi của quân mã dựa trên heuristic và thời gian nghỉ
     public void runTour(int intialRow, int intialCol, boolean optimized, int time) {
         status = true;
         ImageIcon img = new ImageIcon(getClass().getResource("/icon/knight1.png"));
-        int size = 1000 / BOARD_SIZE;
+        int size = 900 / BOARD_SIZE;
         Image scaled = scaleImage(img.getImage(), size, size);
         ImageIcon scaledIcon = new ImageIcon(scaled);
         knight = new Knight(scaledIcon, intialRow, intialCol);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
             resetBoard();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -300,8 +299,9 @@ public class Board {
         new Thread(() -> {
             while (visitedTileCounter < (BOARD_SIZE * BOARD_SIZE) && moveKnight(optimized)) {
                 //tạo biến cờ
-                if (!status)
+                if (!status) {
                     break;
+                }
                 try {
                     Thread.sleep(time);
                 } catch (InterruptedException e) {
@@ -327,9 +327,9 @@ public class Board {
             Object source = e.getSource();
             clearMoveSuggestion();
             ImageIcon img = new ImageIcon(getClass().getResource("/icon/knight1.png"));
-        int size = 1000 / BOARD_SIZE;
-        Image scaled = scaleImage(img.getImage(), size, size);
-        ImageIcon scaledIcon = new ImageIcon(scaled);
+            int size = 900 / BOARD_SIZE;
+            Image scaled = scaleImage(img.getImage(), size, size);
+            ImageIcon scaledIcon = new ImageIcon(scaled);
 
             for (int row = 0; row < BOARD_SIZE; row++) {
                 for (int col = 0; col < BOARD_SIZE; col++) {
